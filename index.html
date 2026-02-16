@@ -15,17 +15,17 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 30px 15px;
+            padding: 30px 20px;
             line-height: 1.6;
         }
 
         .container {
-            max-width: 850px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
             border-radius: 20px;
             box-shadow: 0 15px 50px rgba(0,0,0,0.3);
-            padding: 50px 45px;
+            padding: 50px;
         }
 
         h1 {
@@ -39,147 +39,145 @@
         .quiz-info {
             text-align: center;
             color: #555;
-            margin-bottom: 40px;
-            padding: 20px;
+            margin-bottom: 45px;
+            padding: 25px;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 12px;
+            border-radius: 15px;
             font-size: 1.05em;
+        }
+
+        .quiz-info p {
+            margin: 8px 0;
         }
 
         .quiz-info strong {
             color: #667eea;
-            font-size: 1.2em;
+            font-size: 1.3em;
         }
 
         .question-block {
-            margin-bottom: 35px;
-            padding: 30px;
+            margin-bottom: 40px;
+            padding: 35px;
             background: #f8f9fa;
             border-radius: 15px;
             border-left: 6px solid #667eea;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         .question-header {
-            display: block;
-            margin-bottom: 20px;
-        }
-
-        .question-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
+            margin-bottom: 25px;
         }
 
         .question-number {
             background: #667eea;
             color: white;
-            padding: 10px 18px;
+            padding: 12px 20px;
             border-radius: 50%;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.2em;
             display: inline-block;
+            margin-bottom: 15px;
         }
 
         .question-type {
             background: #764ba2;
             color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85em;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9em;
             font-weight: 600;
             display: inline-block;
+            margin-left: 15px;
         }
 
         .question-text {
-            font-size: 1.15em;
+            font-size: 1.2em;
             color: #222;
-            font-weight: 500;
+            font-weight: 600;
+            line-height: 1.8;
+            margin-top: 15px;
             display: block;
-            margin-top: 10px;
-            line-height: 1.7;
         }
 
         .options {
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
-        .option {
-            margin: 12px 0;
-            padding: 16px 18px;
+        .option-item {
+            margin-bottom: 15px;
+            padding: 18px 20px;
             background: white;
             border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
+            display: block;
         }
 
-        .option:hover {
+        .option-item:hover {
             background: #e8eaf6;
             border-color: #667eea;
-            transform: translateX(8px);
+            transform: translateX(10px);
         }
 
-        .option input[type="radio"] {
-            margin-right: 12px;
+        .option-item input[type="radio"] {
+            margin-right: 15px;
             cursor: pointer;
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
         }
 
-        .option label {
+        .option-item label {
             cursor: pointer;
-            font-size: 1.02em;
+            font-size: 1.05em;
             color: #333;
-            flex: 1;
+            line-height: 1.6;
+            vertical-align: middle;
+            display: inline;
         }
 
         textarea {
             width: 100%;
-            min-height: 120px;
-            padding: 15px;
+            min-height: 130px;
+            padding: 18px;
             border: 2px solid #ddd;
-            border-radius: 10px;
+            border-radius: 12px;
             font-family: inherit;
-            font-size: 1em;
+            font-size: 1.05em;
             resize: vertical;
-            margin-top: 15px;
-            line-height: 1.6;
+            margin-top: 20px;
+            line-height: 1.7;
         }
 
         textarea:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
         }
 
         .long-answer textarea {
-            min-height: 180px;
+            min-height: 200px;
         }
 
         .submit-btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            padding: 18px 50px;
-            font-size: 1.3em;
-            font-weight: 600;
-            border-radius: 35px;
+            padding: 20px 60px;
+            font-size: 1.4em;
+            font-weight: 700;
+            border-radius: 40px;
             cursor: pointer;
             display: block;
-            margin: 40px auto;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            margin: 50px auto;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
             transition: all 0.3s ease;
         }
 
         .submit-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.7);
         }
 
         .submit-btn:active {
@@ -188,94 +186,117 @@
 
         .results {
             display: none;
-            margin-top: 40px;
-            padding: 35px;
+            margin-top: 50px;
+            padding: 40px;
             background: #f8f9fa;
-            border-radius: 15px;
+            border-radius: 20px;
         }
 
         .score-display {
             text-align: center;
-            font-size: 2.2em;
+            font-size: 2.3em;
             color: #667eea;
-            margin-bottom: 25px;
-            padding: 30px;
+            margin-bottom: 30px;
+            padding: 35px;
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             font-weight: 700;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .score-display div {
+            margin: 10px 0;
         }
 
         .explanation {
-            margin-top: 18px;
-            padding: 18px;
+            margin-top: 20px;
+            padding: 20px;
             background: #e8f5e9;
-            border-left: 5px solid #4caf50;
-            border-radius: 8px;
-            line-height: 1.7;
+            border-left: 6px solid #4caf50;
+            border-radius: 10px;
+            line-height: 1.8;
         }
 
         .explanation-title {
             font-weight: bold;
             color: #2e7d32;
-            margin-bottom: 10px;
-            font-size: 1.05em;
+            margin-bottom: 12px;
+            font-size: 1.1em;
         }
 
         .correct-answer {
             color: #4caf50;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.15em;
         }
 
         .incorrect-answer {
             color: #f44336;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.15em;
         }
 
         .user-answer {
-            margin-top: 12px;
-            padding: 15px;
+            margin-top: 15px;
+            padding: 18px;
             background: white;
-            border-radius: 8px;
-            line-height: 1.6;
+            border-radius: 10px;
+            line-height: 1.7;
+        }
+
+        h2 {
+            color: #667eea;
+            text-align: center;
+            margin: 40px 0 25px 0;
+            font-size: 2em;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 30px 20px;
+                padding: 30px 25px;
             }
 
             h1 {
-                font-size: 2em;
+                font-size: 2.2em;
+            }
+
+            .question-block {
+                padding: 25px 20px;
             }
 
             .question-text {
-                font-size: 1.05em;
+                font-size: 1.1em;
             }
 
-            .option {
-                padding: 14px;
+            .option-item {
+                padding: 15px;
             }
 
             .submit-btn {
                 width: 100%;
-                padding: 16px 30px;
+                padding: 18px 40px;
             }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 25px 15px;
+                padding: 25px 18px;
             }
 
             h1 {
-                font-size: 1.6em;
+                font-size: 1.8em;
             }
 
-            .question-block {
-                padding: 20px 15px;
+            .question-number {
+                padding: 10px 16px;
+                font-size: 1em;
+            }
+
+            .question-type {
+                display: block;
+                margin-left: 0;
+                margin-top: 10px;
+                text-align: center;
             }
         }
     </style>
@@ -293,435 +314,405 @@
             <!-- Question 1 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">1</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">1</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">What is the definition of a business?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q1" value="A" id="q1a">
-                        <label for="q1a">A) A government organization that provides services</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q1" value="B" id="q1b">
-                        <label for="q1b">B) An organization that produces or distributes a good or service for profit</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q1" value="C" id="q1c">
-                        <label for="q1c">C) A non-profit organization helping the community</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q1" value="D" id="q1d">
-                        <label for="q1d">D) A group of people working together without financial goals</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q1" value="A">
+                        <span>A) A government organization that provides services</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q1" value="B">
+                        <span>B) An organization that produces or distributes a good or service for profit</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q1" value="C">
+                        <span>C) A non-profit organization helping the community</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q1" value="D">
+                        <span>D) A group of people working together without financial goals</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 2 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">2</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">2</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">Which of the following is NOT one of the three major activities every business engages in?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q2" value="A" id="q2a">
-                        <label for="q2a">A) Production</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q2" value="B" id="q2b">
-                        <label for="q2b">B) Marketing</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q2" value="C" id="q2c">
-                        <label for="q2c">C) Finance</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q2" value="D" id="q2d">
-                        <label for="q2d">D) Administration</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q2" value="A">
+                        <span>A) Production</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q2" value="B">
+                        <span>B) Marketing</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q2" value="C">
+                        <span>C) Finance</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q2" value="D">
+                        <span>D) Administration</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 3 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">3</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">3</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">Which industry type manufactures raw materials into finished products?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q3" value="A" id="q3a">
-                        <label for="q3a">A) Primary Industry</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q3" value="B" id="q3b">
-                        <label for="q3b">B) Secondary Industry</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q3" value="C" id="q3c">
-                        <label for="q3c">C) Tertiary Industry</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q3" value="D" id="q3d">
-                        <label for="q3d">D) Quaternary Industry</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q3" value="A">
+                        <span>A) Primary Industry</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q3" value="B">
+                        <span>B) Secondary Industry</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q3" value="C">
+                        <span>C) Tertiary Industry</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q3" value="D">
+                        <span>D) Quaternary Industry</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 4 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">4</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">4</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">What does GDP stand for?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q4" value="A" id="q4a">
-                        <label for="q4a">A) General Distribution Product</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q4" value="B" id="q4b">
-                        <label for="q4b">B) Gross Domestic Product</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q4" value="C" id="q4c">
-                        <label for="q4c">C) Global Development Plan</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q4" value="D" id="q4d">
-                        <label for="q4d">D) Government Distribution Policy</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q4" value="A">
+                        <span>A) General Distribution Product</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q4" value="B">
+                        <span>B) Gross Domestic Product</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q4" value="C">
+                        <span>C) Global Development Plan</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q4" value="D">
+                        <span>D) Government Distribution Policy</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 5 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">5</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">5</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">In the GDP formula GDP = C + I + G + (X - M), what does 'C' represent?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q5" value="A" id="q5a">
-                        <label for="q5a">A) Capital</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q5" value="B" id="q5b">
-                        <label for="q5b">B) Consumption</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q5" value="C" id="q5c">
-                        <label for="q5c">C) Commerce</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q5" value="D" id="q5d">
-                        <label for="q5d">D) Currency</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q5" value="A">
+                        <span>A) Capital</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q5" value="B">
+                        <span>B) Consumption</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q5" value="C">
+                        <span>C) Commerce</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q5" value="D">
+                        <span>D) Currency</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 6 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">6</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">6</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">What is the difference between effectiveness and efficiency?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q6" value="A" id="q6a">
-                        <label for="q6a">A) Effectiveness is doing things right; efficiency is doing the right things</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q6" value="B" id="q6b">
-                        <label for="q6b">B) Effectiveness is making the right decisions; efficiency is producing quickly at low cost</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q6" value="C" id="q6c">
-                        <label for="q6c">C) They are the same concept</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q6" value="D" id="q6d">
-                        <label for="q6d">D) Effectiveness is about profit; efficiency is about customer satisfaction</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q6" value="A">
+                        <span>A) Effectiveness is doing things right; efficiency is doing the right things</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q6" value="B">
+                        <span>B) Effectiveness is making the right decisions; efficiency is producing quickly at low cost</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q6" value="C">
+                        <span>C) They are the same concept</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q6" value="D">
+                        <span>D) Effectiveness is about profit; efficiency is about customer satisfaction</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 7 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">7</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">7</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">According to business size classification in KSA, how many employees does a small business have?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q7" value="A" id="q7a">
-                        <label for="q7a">A) From 1 to 5</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q7" value="B" id="q7b">
-                        <label for="q7b">B) From 6 to 49</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q7" value="C" id="q7c">
-                        <label for="q7c">C) From 50 to 249</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q7" value="D" id="q7d">
-                        <label for="q7d">D) 250 or more</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q7" value="A">
+                        <span>A) From 1 to 5</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q7" value="B">
+                        <span>B) From 6 to 49</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q7" value="C">
+                        <span>C) From 50 to 249</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q7" value="D">
+                        <span>D) 250 or more</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 8 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">8</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">8</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">What is a franchise?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q8" value="A" id="q8a">
-                        <label for="q8a">A) A type of stock market investment</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q8" value="B" id="q8b">
-                        <label for="q8b">B) A legal agreement to sell a company's product or service under its name and trademark</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q8" value="C" id="q8c">
-                        <label for="q8c">C) A government permit to operate a business</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q8" value="D" id="q8d">
-                        <label for="q8d">D) A business loan program</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q8" value="A">
+                        <span>A) A type of stock market investment</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q8" value="B">
+                        <span>B) A legal agreement to sell a company's product or service under its name and trademark</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q8" value="C">
+                        <span>C) A government permit to operate a business</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q8" value="D">
+                        <span>D) A business loan program</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 9 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">9</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">9</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">Who is the franchisor in a franchise agreement?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q9" value="A" id="q9a">
-                        <label for="q9a">A) The distributor of the franchised product or service</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q9" value="B" id="q9b">
-                        <label for="q9b">B) The parent company that provides the product or service</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q9" value="C" id="q9c">
-                        <label for="q9c">C) The customer who purchases the product</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q9" value="D" id="q9d">
-                        <label for="q9d">D) The government regulatory agency</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q9" value="A">
+                        <span>A) The distributor of the franchised product or service</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q9" value="B">
+                        <span>B) The parent company that provides the product or service</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q9" value="C">
+                        <span>C) The customer who purchases the product</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q9" value="D">
+                        <span>D) The government regulatory agency</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 10 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">10</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">10</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">Which is NOT a benefit of a globalized supply chain?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q10" value="A" id="q10a">
-                        <label for="q10a">A) Reach new customers in new markets</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q10" value="B" id="q10b">
-                        <label for="q10b">B) Expand sourcing opportunities</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q10" value="C" id="q10c">
-                        <label for="q10c">C) Greater complexity</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q10" value="D" id="q10d">
-                        <label for="q10d">D) Save money and increase profits</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q10" value="A">
+                        <span>A) Reach new customers in new markets</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q10" value="B">
+                        <span>B) Expand sourcing opportunities</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q10" value="C">
+                        <span>C) Greater complexity</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q10" value="D">
+                        <span>D) Save money and increase profits</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 11 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">11</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">11</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">What does "globalization" refer to in supply chain management?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q11" value="A" id="q11a">
-                        <label for="q11a">A) Only exporting products to other countries</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q11" value="B" id="q11b">
-                        <label for="q11b">B) The process in which a business operates on an international scale</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q11" value="C" id="q11c">
-                        <label for="q11c">C) Importing raw materials only</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q11" value="D" id="q11d">
-                        <label for="q11d">D) Focusing solely on domestic markets</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q11" value="A">
+                        <span>A) Only exporting products to other countries</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q11" value="B">
+                        <span>B) The process in which a business operates on an international scale</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q11" value="C">
+                        <span>C) Importing raw materials only</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q11" value="D">
+                        <span>D) Focusing solely on domestic markets</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 12 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">12</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">12</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">Which of the following is considered an industrial business?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q12" value="A" id="q12a">
-                        <label for="q12a">A) Retail stores</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q12" value="B" id="q12b">
-                        <label for="q12b">B) Companies that manufacture airplanes</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q12" value="C" id="q12c">
-                        <label for="q12c">C) Medical offices</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q12" value="D" id="q12d">
-                        <label for="q12d">D) Fitness centers</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q12" value="A">
+                        <span>A) Retail stores</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q12" value="B">
+                        <span>B) Companies that manufacture airplanes</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q12" value="C">
+                        <span>C) Medical offices</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q12" value="D">
+                        <span>D) Fitness centers</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 13 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">13</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">13</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">Which type of franchise is most common?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q13" value="A" id="q13a">
-                        <label for="q13a">A) Product Distribution Franchises</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q13" value="B" id="q13b">
-                        <label for="q13b">B) Business Format Franchises</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q13" value="C" id="q13c">
-                        <label for="q13c">C) Investment Franchises</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q13" value="D" id="q13d">
-                        <label for="q13d">D) Service Franchises</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q13" value="A">
+                        <span>A) Product Distribution Franchises</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q13" value="B">
+                        <span>B) Business Format Franchises</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q13" value="C">
+                        <span>C) Investment Franchises</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q13" value="D">
+                        <span>D) Service Franchises</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 14 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">14</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">14</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">What are the three ways efficiency can be achieved?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q14" value="A" id="q14a">
-                        <label for="q14a">A) Marketing, sales, and distribution</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q14" value="B" id="q14b">
-                        <label for="q14b">B) Specialization of effort, better technology, and innovation</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q14" value="C" id="q14c">
-                        <label for="q14c">C) Hiring, training, and firing</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q14" value="D" id="q14d">
-                        <label for="q14d">D) Planning, organizing, and controlling</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q14" value="A">
+                        <span>A) Marketing, sales, and distribution</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q14" value="B">
+                        <span>B) Specialization of effort, better technology, and innovation</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q14" value="C">
+                        <span>C) Hiring, training, and firing</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q14" value="D">
+                        <span>D) Planning, organizing, and controlling</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 15 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">15</span>
-                        <span class="question-type">Multiple Choice</span>
-                    </div>
+                    <span class="question-number">15</span>
+                    <span class="question-type">Multiple Choice</span>
                     <div class="question-text">Which of the following is NOT listed as a stakeholder?</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q15" value="A" id="q15a">
-                        <label for="q15a">A) Customers</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q15" value="B" id="q15b">
-                        <label for="q15b">B) Suppliers</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q15" value="C" id="q15c">
-                        <label for="q15c">C) Competitors</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q15" value="D" id="q15d">
-                        <label for="q15d">D) Local Community</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q15" value="A">
+                        <span>A) Customers</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q15" value="B">
+                        <span>B) Suppliers</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q15" value="C">
+                        <span>C) Competitors</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q15" value="D">
+                        <span>D) Local Community</span>
+                    </label>
                 </div>
             </div>
 
@@ -729,105 +720,95 @@
             <!-- Question 16 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">16</span>
-                        <span class="question-type">True/False</span>
-                    </div>
+                    <span class="question-number">16</span>
+                    <span class="question-type">True/False</span>
                     <div class="question-text">Tertiary industries provide services to consumers and other businesses.</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q16" value="T" id="q16t">
-                        <label for="q16t">True</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q16" value="F" id="q16f">
-                        <label for="q16f">False</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q16" value="T">
+                        <span>True</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q16" value="F">
+                        <span>False</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 17 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">17</span>
-                        <span class="question-type">True/False</span>
-                    </div>
+                    <span class="question-number">17</span>
+                    <span class="question-type">True/False</span>
                     <div class="question-text">The underground economy is included in GDP calculations.</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q17" value="T" id="q17t">
-                        <label for="q17t">True</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q17" value="F" id="q17f">
-                        <label for="q17f">False</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q17" value="T">
+                        <span>True</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q17" value="F">
+                        <span>False</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 18 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">18</span>
-                        <span class="question-type">True/False</span>
-                    </div>
+                    <span class="question-number">18</span>
+                    <span class="question-type">True/False</span>
                     <div class="question-text">A franchisee has complete control over all business decisions and operations.</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q18" value="T" id="q18t">
-                        <label for="q18t">True</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q18" value="F" id="q18f">
-                        <label for="q18f">False</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q18" value="T">
+                        <span>True</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q18" value="F">
+                        <span>False</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 19 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">19</span>
-                        <span class="question-type">True/False</span>
-                    </div>
+                    <span class="question-number">19</span>
+                    <span class="question-type">True/False</span>
                     <div class="question-text">Commercial businesses are engaged in marketing, finance, and providing services.</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q19" value="T" id="q19t">
-                        <label for="q19t">True</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q19" value="F" id="q19f">
-                        <label for="q19f">False</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q19" value="T">
+                        <span>True</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q19" value="F">
+                        <span>False</span>
+                    </label>
                 </div>
             </div>
 
             <!-- Question 20 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">20</span>
-                        <span class="question-type">True/False</span>
-                    </div>
+                    <span class="question-number">20</span>
+                    <span class="question-type">True/False</span>
                     <div class="question-text">Good managers focus on either effectiveness or efficiency, but not both.</div>
                 </div>
                 <div class="options">
-                    <div class="option">
-                        <input type="radio" name="q20" value="T" id="q20t">
-                        <label for="q20t">True</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q20" value="F" id="q20f">
-                        <label for="q20f">False</label>
-                    </div>
+                    <label class="option-item">
+                        <input type="radio" name="q20" value="T">
+                        <span>True</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q20" value="F">
+                        <span>False</span>
+                    </label>
                 </div>
             </div>
 
@@ -835,10 +816,8 @@
             <!-- Question 21 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">21</span>
-                        <span class="question-type">Short Answer</span>
-                    </div>
+                    <span class="question-number">21</span>
+                    <span class="question-type">Short Answer</span>
                     <div class="question-text">List and briefly explain the three major activities every business engages in.</div>
                 </div>
                 <textarea name="q21" placeholder="Write your answer here..."></textarea>
@@ -847,10 +826,8 @@
             <!-- Question 22 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">22</span>
-                        <span class="question-type">Short Answer</span>
-                    </div>
+                    <span class="question-number">22</span>
+                    <span class="question-type">Short Answer</span>
                     <div class="question-text">Name three advantages of operating a franchise business.</div>
                 </div>
                 <textarea name="q22" placeholder="Write your answer here..."></textarea>
@@ -859,10 +836,8 @@
             <!-- Question 23 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">23</span>
-                        <span class="question-type">Short Answer</span>
-                    </div>
+                    <span class="question-number">23</span>
+                    <span class="question-type">Short Answer</span>
                     <div class="question-text">Explain what stakeholders are and provide three examples.</div>
                 </div>
                 <textarea name="q23" placeholder="Write your answer here..."></textarea>
@@ -871,10 +846,8 @@
             <!-- Question 24 -->
             <div class="question-block">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">24</span>
-                        <span class="question-type">Short Answer</span>
-                    </div>
+                    <span class="question-number">24</span>
+                    <span class="question-type">Short Answer</span>
                     <div class="question-text">What are the five components of the GDP formula and what does each represent?</div>
                 </div>
                 <textarea name="q24" placeholder="Write your answer here..."></textarea>
@@ -884,10 +857,8 @@
             <!-- Question 25 -->
             <div class="question-block long-answer">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">25</span>
-                        <span class="question-type">Long Answer</span>
-                    </div>
+                    <span class="question-number">25</span>
+                    <span class="question-type">Long Answer</span>
                     <div class="question-text">Discuss the benefits and negatives of a globalized supply chain. Provide at least three points for each.</div>
                 </div>
                 <textarea name="q25" placeholder="Write your detailed answer here..."></textarea>
@@ -896,10 +867,8 @@
             <!-- Question 26 -->
             <div class="question-block long-answer">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">26</span>
-                        <span class="question-type">Long Answer</span>
-                    </div>
+                    <span class="question-number">26</span>
+                    <span class="question-type">Long Answer</span>
                     <div class="question-text">Compare and contrast effectiveness and efficiency in business operations. Why is it important for managers to focus on both? Provide examples.</div>
                 </div>
                 <textarea name="q26" placeholder="Write your detailed answer here..."></textarea>
@@ -908,10 +877,8 @@
             <!-- Question 27 -->
             <div class="question-block long-answer">
                 <div class="question-header">
-                    <div class="question-top">
-                        <span class="question-number">27</span>
-                        <span class="question-type">Long Answer</span>
-                    </div>
+                    <span class="question-number">27</span>
+                    <span class="question-type">Long Answer</span>
                     <div class="question-text">Explain the difference between industrial and commercial businesses. Provide specific examples of each type and describe how they contribute to the economy.</div>
                 </div>
                 <textarea name="q27" placeholder="Write your detailed answer here..."></textarea>
@@ -955,10 +922,10 @@
         };
 
         const shortAnswerGuidelines = {
-            q21: '<strong>Key Points to Include:</strong><br>1. <strong>Production:</strong> Making a product or providing a service (manufacturing firms create products, service firms use employee skills)<br>2. <strong>Marketing:</strong> Activities between business and customers involved in buying and selling goods and services<br>3. <strong>Finance:</strong> Deals with all money matters involved in running a business',
-            q22: '<strong>Key Advantages:</strong><br>1. <strong>Location assistance:</strong> Help in selecting a location with exclusive rights in a geographic area<br>2. <strong>Training and support:</strong> Franchisor provides policies, procedures, and special training<br>3. <strong>Higher success rate:</strong> These services give inexperienced owners greater chance of success than starting independently<br><em>Other valid answers: Established brand recognition, proven business model, ongoing support</em>',
-            q23: '<strong>Definition and Examples:</strong><br><strong>Stakeholders</strong> are anyone who has an interest in the success of a business.<br><strong>Examples include:</strong> Customers, Employees, Managers, Owners, Suppliers, Government, Creditors, Local Community/Environment (any three are acceptable)',
-            q24: '<strong>GDP Formula Components:</strong><br>GDP = C + I + G + (X - M)<br>• <strong>C (Consumption):</strong> Personal household expenditure (food, rent, medical)<br>• <strong>I (Investment):</strong> Total business expenditure on goods and services<br>• <strong>G (Government Spending):</strong> Government expenses (public worker salaries, roads, schools, military)<br>• <strong>X (Exports):</strong> Goods/services sold to other countries<br>• <strong>M (Imports):</strong> Goods/services purchased from other countries (subtracted from GDP)'
+            q21: '<strong>Key Points to Include:</strong><br><br>1. <strong>Production:</strong> Making a product or providing a service (manufacturing firms create products, service firms use employee skills)<br><br>2. <strong>Marketing:</strong> Activities between business and customers involved in buying and selling goods and services<br><br>3. <strong>Finance:</strong> Deals with all money matters involved in running a business',
+            q22: '<strong>Key Advantages:</strong><br><br>1. <strong>Location assistance:</strong> Help in selecting a location with exclusive rights in a geographic area<br><br>2. <strong>Training and support:</strong> Franchisor provides policies, procedures, and special training<br><br>3. <strong>Higher success rate:</strong> These services give inexperienced owners greater chance of success than starting independently<br><br><em>Other valid answers: Established brand recognition, proven business model, ongoing support</em>',
+            q23: '<strong>Definition and Examples:</strong><br><br><strong>Stakeholders</strong> are anyone who has an interest in the success of a business.<br><br><strong>Examples include:</strong> Customers, Employees, Managers, Owners, Suppliers, Government, Creditors, Local Community/Environment (any three are acceptable)',
+            q24: '<strong>GDP Formula Components:</strong><br><br>GDP = C + I + G + (X - M)<br><br>• <strong>C (Consumption):</strong> Personal household expenditure (food, rent, medical)<br><br>• <strong>I (Investment):</strong> Total business expenditure on goods and services<br><br>• <strong>G (Government Spending):</strong> Government expenses (public worker salaries, roads, schools, military)<br><br>• <strong>X (Exports):</strong> Goods/services sold to other countries<br><br>• <strong>M (Imports):</strong> Goods/services purchased from other countries (subtracted from GDP)'
         };
 
         const longAnswerGuidelines = {
@@ -972,7 +939,7 @@
 
             let score = 0;
             let totalObjective = 20;
-            let resultsHTML = '<h2 style="color: #667eea; text-align: center; margin-bottom: 25px;">📊 Quiz Results</h2>';
+            let resultsHTML = '<h2>📊 Quiz Results</h2>';
 
             for (let i = 1; i <= 20; i++) {
                 const userAnswer = document.querySelector(`input[name="q${i}"]:checked`);
@@ -985,31 +952,32 @@
             let gradeEmoji = percentage >= 90 ? '🌟' : percentage >= 80 ? '🎉' : percentage >= 70 ? '👍' : percentage >= 60 ? '📚' : '💪';
 
             resultsHTML += `<div class="score-display">
-                <div>${gradeEmoji} Objective Questions Score: ${score}/${totalObjective}</div>
+                <div>${gradeEmoji}</div>
+                <div>Objective Questions Score</div>
+                <div>${score}/${totalObjective}</div>
                 <div>Percentage: ${percentage}%</div>
-                <div style="font-size: 0.5em; margin-top: 15px; color: #666; font-weight: normal;">Short and Long answers require manual review</div>
+                <div style="font-size: 0.45em; margin-top: 18px; color: #777; font-weight: normal;">Short and Long answers require manual review</div>
             </div>`;
 
-            resultsHTML += '<h2 style="color: #667eea; margin: 30px 0 20px 0;">📋 Detailed Review</h2>';
+            resultsHTML += '<h2>📋 Detailed Review</h2>';
 
             for (let i = 1; i <= 20; i++) {
                 const userAnswer = document.querySelector(`input[name="q${i}"]:checked`);
                 const isCorrect = userAnswer && userAnswer.value === answers[`q${i}`];
-                const questionText = document.querySelectorAll('.question-text')[i-1].textContent;
+                const questionElements = document.querySelectorAll('.question-text');
+                const questionText = questionElements[i-1].textContent;
 
                 resultsHTML += `<div class="question-block">
                     <div class="question-header">
-                        <div class="question-top">
-                            <span class="question-number">${i}</span>
-                            <span class="${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
-                                ${isCorrect ? '✓ Correct' : '✗ Incorrect'}
-                            </span>
-                        </div>
+                        <span class="question-number">${i}</span>
+                        <span class="${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
+                            ${isCorrect ? '✓ Correct' : '✗ Incorrect'}
+                        </span>
                         <div class="question-text">${questionText}</div>
                     </div>
-                    <div style="margin: 15px 0; padding: 12px; background: white; border-radius: 8px;">
-                        <strong>Correct Answer:</strong> <span style="color: #4caf50; font-weight: bold;">${answers[`q${i}`]}</span>
-                        ${userAnswer ? `<br><strong>Your Answer:</strong> <span style="color: ${isCorrect ? '#4caf50' : '#f44336'}; font-weight: bold;">${userAnswer.value}</span>` : '<br><strong>Your Answer:</strong> <span style="color: #999;">Not answered</span>'}
+                    <div style="margin: 18px 0; padding: 15px; background: white; border-radius: 10px;">
+                        <strong>Correct Answer:</strong> <span style="color: #4caf50; font-weight: bold; font-size: 1.1em;">${answers[`q${i}`]}</span>
+                        ${userAnswer ? `<br><br><strong>Your Answer:</strong> <span style="color: ${isCorrect ? '#4caf50' : '#f44336'}; font-weight: bold; font-size: 1.1em;">${userAnswer.value}</span>` : '<br><br><strong>Your Answer:</strong> <span style="color: #999;">Not answered</span>'}
                     </div>
                     <div class="explanation">
                         <div class="explanation-title">💡 Explanation:</div>
@@ -1018,15 +986,14 @@
                 </div>`;
             }
 
-            resultsHTML += '<h2 style="margin-top: 40px; color: #667eea; text-align: center;">📝 Short Answer Guidelines</h2>';
+            resultsHTML += '<h2>📝 Short Answer Guidelines</h2>';
             for (let i = 21; i <= 24; i++) {
                 const userAnswer = document.querySelector(`textarea[name="q${i}"]`).value;
-                const questionText = document.querySelectorAll('.question-text')[i-1].textContent;
+                const questionElements = document.querySelectorAll('.question-text');
+                const questionText = questionElements[i-1].textContent;
                 resultsHTML += `<div class="question-block">
                     <div class="question-header">
-                        <div class="question-top">
-                            <span class="question-number">${i}</span>
-                        </div>
+                        <span class="question-number">${i}</span>
                         <div class="question-text">${questionText}</div>
                     </div>
                     ${userAnswer ? `<div class="user-answer"><strong>Your Answer:</strong><br>${userAnswer.replace(/
@@ -1038,15 +1005,14 @@
                 </div>`;
             }
 
-            resultsHTML += '<h2 style="margin-top: 40px; color: #667eea; text-align: center;">📚 Long Answer Guidelines</h2>';
+            resultsHTML += '<h2>📚 Long Answer Guidelines</h2>';
             for (let i = 25; i <= 27; i++) {
                 const userAnswer = document.querySelector(`textarea[name="q${i}"]`).value;
-                const questionText = document.querySelectorAll('.question-text')[i-1].textContent;
+                const questionElements = document.querySelectorAll('.question-text');
+                const questionText = questionElements[i-1].textContent;
                 resultsHTML += `<div class="question-block">
                     <div class="question-header">
-                        <div class="question-top">
-                            <span class="question-number">${i}</span>
-                        </div>
+                        <span class="question-number">${i}</span>
                         <div class="question-text">${questionText}</div>
                     </div>
                     ${userAnswer ? `<div class="user-answer"><strong>Your Answer:</strong><br>${userAnswer.replace(/
