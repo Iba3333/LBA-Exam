@@ -185,10 +185,10 @@
 
         .results {
             display: none;
-            margin-top: 50px;
-            padding: 40px;
-            background: #f8f9fa;
-            border-radius: 20px;
+        }
+
+        .results.show {
+            display: block;
         }
 
         .score-display {
@@ -250,12 +250,8 @@
             font-size: 2em;
         }
 
-        #quizForm {
-            display: block;
-        }
-
-        #quizForm.hidden {
-            display: none;
+        .hidden {
+            display: none !important;
         }
 
         @media (max-width: 768px) {
@@ -898,13 +894,15 @@
     </div>
 
     <script>
-        const answers = {
+        // Answer key
+        const correctAnswers = {
             q1: 'B', q2: 'D', q3: 'B', q4: 'B', q5: 'B',
             q6: 'B', q7: 'B', q8: 'B', q9: 'B', q10: 'C',
             q11: 'B', q12: 'B', q13: 'B', q14: 'B', q15: 'C',
             q16: 'T', q17: 'F', q18: 'F', q19: 'T', q20: 'F'
         };
 
+        // Explanations
         const explanations = {
             q1: 'A business is defined as an organization that produces or distributes a good or service for profit. This distinguishes it from non-profit organizations and government entities.',
             q2: 'The three major activities are Production, Marketing, and Finance. Administration, while important, is not listed as one of the three major activities.',
@@ -928,124 +926,138 @@
             q20: 'False. Good managers focus on BOTH effectiveness AND efficiency and are able to achieve both. Focusing on only one leads to business problems.'
         };
 
-        const shortAnswerGuidelines = {
-            q21: '<strong>Key Points to Include:</strong><br><br>1. <strong>Production:</strong> Making a product or providing a service (manufacturing firms create products, service firms use employee skills)<br><br>2. <strong>Marketing:</strong> Activities between business and customers involved in buying and selling goods and services<br><br>3. <strong>Finance:</strong> Deals with all money matters involved in running a business',
-            q22: '<strong>Key Advantages:</strong><br><br>1. <strong>Location assistance:</strong> Help in selecting a location with exclusive rights in a geographic area<br><br>2. <strong>Training and support:</strong> Franchisor provides policies, procedures, and special training<br><br>3. <strong>Higher success rate:</strong> These services give inexperienced owners greater chance of success than starting independently<br><br><em>Other valid answers: Established brand recognition, proven business model, ongoing support</em>',
-            q23: '<strong>Definition and Examples:</strong><br><br><strong>Stakeholders</strong> are anyone who has an interest in the success of a business.<br><br><strong>Examples include:</strong> Customers, Employees, Managers, Owners, Suppliers, Government, Creditors, Local Community/Environment (any three are acceptable)',
-            q24: '<strong>GDP Formula Components:</strong><br><br>GDP = C + I + G + (X - M)<br><br>• <strong>C (Consumption):</strong> Personal household expenditure (food, rent, medical)<br><br>• <strong>I (Investment):</strong> Total business expenditure on goods and services<br><br>• <strong>G (Government Spending):</strong> Government expenses (public worker salaries, roads, schools, military)<br><br>• <strong>X (Exports):</strong> Goods/services sold to other countries<br><br>• <strong>M (Imports):</strong> Goods/services purchased from other countries (subtracted from GDP)'
+        // Short answer guidelines
+        const shortGuidelines = {
+            q21: '<strong>Key Points:</strong><br><br>1. <strong>Production:</strong> Making products or providing services<br>2. <strong>Marketing:</strong> Buying and selling goods/services to customers<br>3. <strong>Finance:</strong> Managing all money matters in the business',
+            q22: '<strong>Advantages:</strong><br><br>1. Location assistance with exclusive territory<br>2. Training and ongoing support<br>3. Higher success rate than independent startups',
+            q23: '<strong>Definition:</strong> Anyone with interest in business success<br><br><strong>Examples:</strong> Customers, Employees, Suppliers (any 3)',
+            q24: '<strong>Components:</strong><br><br>C = Consumption<br>I = Investment<br>G = Government Spending<br>X = Exports<br>M = Imports'
         };
 
-        const longAnswerGuidelines = {
-            q25: '<strong>Comprehensive Answer Should Include:</strong><br><br><strong>Benefits (at least 3):</strong><br>1. Reach new customers in new markets worldwide<br>2. Expand sourcing opportunities (diverse workers, raw materials, products)<br>3. Offer larger selection of goods and services<br>4. Grow and expand business scope<br>5. Save money and increase profits<br><br><strong>Negatives (at least 3):</strong><br>1. Greater complexity in scaling operations<br>2. Increased supply chain risk (natural disasters, port closures, pandemics)<br>3. Increased competition from similar companies<br>4. Greater data collection challenges across borders<br>5. More legal issues from different legal systems',
-            q26: '<strong>Comprehensive Answer Should Include:</strong><br><br><strong>Effectiveness:</strong> Making the right decisions about what products/services to offer and best ways to produce/deliver them<br><br><strong>Efficiency:</strong> Producing products quickly, at low cost, without wasting time and materials<br><br><strong>Comparison:</strong> Some companies are efficient but ineffective (doing wrong things well), others are effective but inefficient (right things poorly)<br><br><strong>Importance:</strong> Good managers must focus on BOTH to succeed. Effectiveness without efficiency wastes resources; efficiency without effectiveness produces wrong products<br><br><strong>Examples:</strong> Student should provide relevant examples showing understanding',
-            q27: '<strong>Comprehensive Answer Should Include:</strong><br><br><strong>Industrial Businesses:</strong><br>• Produce goods used by other businesses/organizations<br>• Examples: Companies that construct buildings, manufacture airplanes, assemble televisions, mine coal, extract oil/gas<br>• Contribution: Provide resources and products for other companies and consumers<br><br><strong>Commercial Businesses:</strong><br>• Engaged in marketing, finance, and providing services<br>• Examples: Wholesalers, retailers, banks, investment companies, medical offices, fitness centers, hotels<br>• Contribution: Facilitate distribution, financial services, and consumer services<br><br><strong>Economic Impact:</strong> Both types are essential - industrial creates products, commercial distributes and provides services'
+        // Long answer guidelines
+        const longGuidelines = {
+            q25: '<strong>Benefits:</strong> New markets, sourcing opportunities, cost savings<br><br><strong>Negatives:</strong> Complexity, supply risks, legal issues',
+            q26: '<strong>Effectiveness:</strong> Right decisions<br><strong>Efficiency:</strong> Low cost production<br><strong>Importance:</strong> Both needed for success',
+            q27: '<strong>Industrial:</strong> Produce goods (airplanes, buildings)<br><strong>Commercial:</strong> Services & distribution (banks, retailers)'
         };
 
+        // Form submission
         document.getElementById('quizForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            console.log('Submit button clicked!');
-
-            let score = 0;
-            let totalObjective = 20;
-            let resultsHTML = '<h2>📊 Quiz Results</h2>';
-
             // Calculate score
+            let score = 0;
+            const total = 20;
+
             for (let i = 1; i <= 20; i++) {
-                const userAnswer = document.querySelector(`input[name="q${i}"]:checked`);
-                if (userAnswer && userAnswer.value === answers[`q${i}`]) {
+                const selected = document.querySelector('input[name="q' + i + '"]:checked');
+                if (selected && selected.value === correctAnswers['q' + i]) {
                     score++;
                 }
             }
 
-            const percentage = (score / totalObjective * 100).toFixed(1);
-            let gradeEmoji = percentage >= 90 ? '🌟' : percentage >= 80 ? '🎉' : percentage >= 70 ? '👍' : percentage >= 60 ? '📚' : '💪';
+            const percentage = ((score / total) * 100).toFixed(1);
+            let emoji = '💪';
+            if (percentage >= 90) emoji = '🌟';
+            else if (percentage >= 80) emoji = '🎉';
+            else if (percentage >= 70) emoji = '👍';
+            else if (percentage >= 60) emoji = '📚';
 
-            resultsHTML += `<div class="score-display">
-                <div style="font-size: 3em; margin-bottom: 15px;">${gradeEmoji}</div>
-                <div style="font-size: 0.7em; color: #555;">Objective Questions Score</div>
-                <div style="font-size: 1.2em; margin: 10px 0;">${score} / ${totalObjective}</div>
-                <div style="font-size: 0.9em;">Percentage: ${percentage}%</div>
-                <div style="font-size: 0.45em; margin-top: 18px; color: #777; font-weight: normal;">Short and Long answers require manual review</div>
-            </div>`;
+            // Build results HTML
+            let html = '<h2>📊 Quiz Results</h2>';
+            html += '<div class="score-display">';
+            html += '<div style="font-size:3em;">' + emoji + '</div>';
+            html += '<div style="font-size:0.7em;color:#555;">Score</div>';
+            html += '<div>' + score + ' / ' + total + '</div>';
+            html += '<div style="font-size:0.9em;">' + percentage + '%</div>';
+            html += '</div>';
 
-            resultsHTML += '<h2>📋 Detailed Review</h2>';
+            html += '<h2>📋 Review</h2>';
 
-            // Show detailed results for objective questions
+            // Objective questions
             for (let i = 1; i <= 20; i++) {
-                const userAnswer = document.querySelector(`input[name="q${i}"]:checked`);
-                const isCorrect = userAnswer && userAnswer.value === answers[`q${i}`];
-                const questionElements = document.querySelectorAll('.question-text');
-                const questionText = questionElements[i-1].textContent;
+                const selected = document.querySelector('input[name="q' + i + '"]:checked');
+                const correct = correctAnswers['q' + i];
+                const isCorrect = selected && selected.value === correct;
+                const qText = document.querySelectorAll('.question-text')[i-1].textContent;
 
-                resultsHTML += `<div class="question-block">
-                    <div class="question-header">
-                        <span class="question-number">${i}</span>
-                        <span class="${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
-                            ${isCorrect ? '✓ Correct' : '✗ Incorrect'}
-                        </span>
-                        <div class="question-text">${questionText}</div>
-                    </div>
-                    <div style="margin: 18px 0; padding: 15px; background: white; border-radius: 10px;">
-                        <strong>Correct Answer:</strong> <span style="color: #4caf50; font-weight: bold; font-size: 1.1em;">${answers[`q${i}`]}</span>
-                        ${userAnswer ? `<br><br><strong>Your Answer:</strong> <span style="color: ${isCorrect ? '#4caf50' : '#f44336'}; font-weight: bold; font-size: 1.1em;">${userAnswer.value}</span>` : '<br><br><strong>Your Answer:</strong> <span style="color: #999;">Not answered</span>'}
-                    </div>
-                    <div class="explanation">
-                        <div class="explanation-title">💡 Explanation:</div>
-                        ${explanations[`q${i}`]}
-                    </div>
-                </div>`;
+                html += '<div class="question-block">';
+                html += '<div class="question-header">';
+                html += '<span class="question-number">' + i + '</span>';
+                html += '<span class="' + (isCorrect ? 'correct-answer' : 'incorrect-answer') + '">';
+                html += isCorrect ? '✓ Correct' : '✗ Incorrect';
+                html += '</span>';
+                html += '<div class="question-text">' + qText + '</div>';
+                html += '</div>';
+                html += '<div style="margin:18px 0;padding:15px;background:white;border-radius:10px;">';
+                html += '<strong>Correct:</strong> <span style="color:#4caf50;font-weight:bold;">' + correct + '</span><br>';
+                html += '<strong>Your answer:</strong> ';
+                if (selected) {
+                    html += '<span style="color:' + (isCorrect ? '#4caf50' : '#f44336') + ';font-weight:bold;">' + selected.value + '</span>';
+                } else {
+                    html += '<span style="color:#999;">Not answered</span>';
+                }
+                html += '</div>';
+                html += '<div class="explanation">';
+                html += '<div class="explanation-title">💡 Explanation:</div>';
+                html += explanations['q' + i];
+                html += '</div>';
+                html += '</div>';
             }
 
-            // Show short answer guidelines
-            resultsHTML += '<h2>📝 Short Answer Guidelines</h2>';
+            // Short answers
+            html += '<h2>📝 Short Answers</h2>';
             for (let i = 21; i <= 24; i++) {
-                const userAnswer = document.querySelector(`textarea[name="q${i}"]`).value;
-                const questionElements = document.querySelectorAll('.question-text');
-                const questionText = questionElements[i-1].textContent;
-                resultsHTML += `<div class="question-block">
-                    <div class="question-header">
-                        <span class="question-number">${i}</span>
-                        <div class="question-text">${questionText}</div>
-                    </div>
-                    ${userAnswer ? `<div class="user-answer"><strong>Your Answer:</strong><br>${userAnswer.replace(/
-/g, '<br>')}</div>` : '<div class="user-answer" style="color: #999; font-style: italic;">No answer provided</div>'}
-                    <div class="explanation">
-                        <div class="explanation-title">💡 Suggested Answer Guidelines:</div>
-                        ${shortAnswerGuidelines[`q${i}`]}
-                    </div>
-                </div>`;
+                const answer = document.querySelector('textarea[name="q' + i + '"]').value;
+                const qText = document.querySelectorAll('.question-text')[i-1].textContent;
+
+                html += '<div class="question-block">';
+                html += '<div class="question-header">';
+                html += '<span class="question-number">' + i + '</span>';
+                html += '<div class="question-text">' + qText + '</div>';
+                html += '</div>';
+                if (answer) {
+                    html += '<div class="user-answer"><strong>Your Answer:</strong><br>' + answer.replace(/
+/g, '<br>') + '</div>';
+                } else {
+                    html += '<div class="user-answer" style="color:#999;font-style:italic;">No answer</div>';
+                }
+                html += '<div class="explanation">';
+                html += '<div class="explanation-title">💡 Guidelines:</div>';
+                html += shortGuidelines['q' + i];
+                html += '</div>';
+                html += '</div>';
             }
 
-            // Show long answer guidelines
-            resultsHTML += '<h2>📚 Long Answer Guidelines</h2>';
+            // Long answers
+            html += '<h2>📚 Long Answers</h2>';
             for (let i = 25; i <= 27; i++) {
-                const userAnswer = document.querySelector(`textarea[name="q${i}"]`).value;
-                const questionElements = document.querySelectorAll('.question-text');
-                const questionText = questionElements[i-1].textContent;
-                resultsHTML += `<div class="question-block">
-                    <div class="question-header">
-                        <span class="question-number">${i}</span>
-                        <div class="question-text">${questionText}</div>
-                    </div>
-                    ${userAnswer ? `<div class="user-answer"><strong>Your Answer:</strong><br>${userAnswer.replace(/
-/g, '<br>')}</div>` : '<div class="user-answer" style="color: #999; font-style: italic;">No answer provided</div>'}
-                    <div class="explanation">
-                        <div class="explanation-title">💡 Comprehensive Answer Guidelines:</div>
-                        ${longAnswerGuidelines[`q${i}`]}
-                    </div>
-                </div>`;
+                const answer = document.querySelector('textarea[name="q' + i + '"]').value;
+                const qText = document.querySelectorAll('.question-text')[i-1].textContent;
+
+                html += '<div class="question-block">';
+                html += '<div class="question-header">';
+                html += '<span class="question-number">' + i + '</span>';
+                html += '<div class="question-text">' + qText + '</div>';
+                html += '</div>';
+                if (answer) {
+                    html += '<div class="user-answer"><strong>Your Answer:</strong><br>' + answer.replace(/
+/g, '<br>') + '</div>';
+                } else {
+                    html += '<div class="user-answer" style="color:#999;font-style:italic;">No answer</div>';
+                }
+                html += '<div class="explanation">';
+                html += '<div class="explanation-title">💡 Guidelines:</div>';
+                html += longGuidelines['q' + i];
+                html += '</div>';
+                html += '</div>';
             }
 
-            // Hide form and show results
+            // Display results
             document.getElementById('quizForm').classList.add('hidden');
-            document.getElementById('results').innerHTML = resultsHTML;
-            document.getElementById('results').style.display = 'block';
-
-            // Scroll to top smoothly
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            console.log('Results displayed successfully!');
+            document.getElementById('results').innerHTML = html;
+            document.getElementById('results').classList.add('show');
+            window.scrollTo({top: 0, behavior: 'smooth'});
         });
     </script>
 </body>
