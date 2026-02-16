@@ -128,13 +128,12 @@
             vertical-align: middle;
         }
 
-        .option-item label {
+        .option-item span {
             cursor: pointer;
             font-size: 1.05em;
             color: #333;
             line-height: 1.6;
             vertical-align: middle;
-            display: inline;
         }
 
         textarea {
@@ -249,6 +248,14 @@
             text-align: center;
             margin: 40px 0 25px 0;
             font-size: 2em;
+        }
+
+        #quizForm {
+            display: block;
+        }
+
+        #quizForm.hidden {
+            display: none;
         }
 
         @media (max-width: 768px) {
@@ -937,10 +944,13 @@
         document.getElementById('quizForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
+            console.log('Submit button clicked!');
+
             let score = 0;
             let totalObjective = 20;
             let resultsHTML = '<h2>📊 Quiz Results</h2>';
 
+            // Calculate score
             for (let i = 1; i <= 20; i++) {
                 const userAnswer = document.querySelector(`input[name="q${i}"]:checked`);
                 if (userAnswer && userAnswer.value === answers[`q${i}`]) {
@@ -952,15 +962,16 @@
             let gradeEmoji = percentage >= 90 ? '🌟' : percentage >= 80 ? '🎉' : percentage >= 70 ? '👍' : percentage >= 60 ? '📚' : '💪';
 
             resultsHTML += `<div class="score-display">
-                <div>${gradeEmoji}</div>
-                <div>Objective Questions Score</div>
-                <div>${score}/${totalObjective}</div>
-                <div>Percentage: ${percentage}%</div>
+                <div style="font-size: 3em; margin-bottom: 15px;">${gradeEmoji}</div>
+                <div style="font-size: 0.7em; color: #555;">Objective Questions Score</div>
+                <div style="font-size: 1.2em; margin: 10px 0;">${score} / ${totalObjective}</div>
+                <div style="font-size: 0.9em;">Percentage: ${percentage}%</div>
                 <div style="font-size: 0.45em; margin-top: 18px; color: #777; font-weight: normal;">Short and Long answers require manual review</div>
             </div>`;
 
             resultsHTML += '<h2>📋 Detailed Review</h2>';
 
+            // Show detailed results for objective questions
             for (let i = 1; i <= 20; i++) {
                 const userAnswer = document.querySelector(`input[name="q${i}"]:checked`);
                 const isCorrect = userAnswer && userAnswer.value === answers[`q${i}`];
@@ -986,6 +997,7 @@
                 </div>`;
             }
 
+            // Show short answer guidelines
             resultsHTML += '<h2>📝 Short Answer Guidelines</h2>';
             for (let i = 21; i <= 24; i++) {
                 const userAnswer = document.querySelector(`textarea[name="q${i}"]`).value;
@@ -1005,6 +1017,7 @@
                 </div>`;
             }
 
+            // Show long answer guidelines
             resultsHTML += '<h2>📚 Long Answer Guidelines</h2>';
             for (let i = 25; i <= 27; i++) {
                 const userAnswer = document.querySelector(`textarea[name="q${i}"]`).value;
@@ -1024,12 +1037,15 @@
                 </div>`;
             }
 
+            // Hide form and show results
+            document.getElementById('quizForm').classList.add('hidden');
             document.getElementById('results').innerHTML = resultsHTML;
             document.getElementById('results').style.display = 'block';
+
+            // Scroll to top smoothly
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            setTimeout(() => {
-                document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 300);
+
+            console.log('Results displayed successfully!');
         });
     </script>
 </body>
