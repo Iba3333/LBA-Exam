@@ -1,1064 +1,730 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LBA Comprehensive Quiz</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LBA Quiz (New Design)</title>
+  <style>
+    :root{
+      --bg1:#0f172a;
+      --bg2:#312e81;
+      --card:#0b1220cc;
+      --paper:#ffffff;
+      --muted:#64748b;
+      --text:#0f172a;
+      --brand:#6366f1;
+      --brand2:#22c55e;
+      --danger:#ef4444;
+      --ring: 0 0 0 4px rgba(99,102,241,.18);
+      --shadow: 0 18px 55px rgba(2,6,23,.35);
+      --shadow2: 0 10px 25px rgba(2,6,23,.15);
+      --radius: 18px;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 30px 20px;
-            line-height: 1.6;
-        }
+    *{ box-sizing:border-box; margin:0; padding:0; }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
-            padding: 50px;
-        }
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background: radial-gradient(1200px 800px at 15% 10%, #4f46e5 0%, rgba(79,70,229,0) 55%),
+                  radial-gradient(1000px 700px at 90% 20%, #22c55e 0%, rgba(34,197,94,0) 50%),
+                  linear-gradient(135deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+      padding: 28px 16px 56px;
+      color: #e5e7eb;
+    }
 
-        h1 {
-            color: #667eea;
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 2.8em;
-            font-weight: 700;
-        }
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+    }
 
-        .quiz-info {
-            text-align: center;
-            color: #555;
-            margin-bottom: 45px;
-            padding: 25px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 15px;
-            font-size: 1.05em;
-        }
+    .top{
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      box-shadow: var(--shadow);
+      display:flex;
+      gap: 14px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
 
-        .quiz-info p {
-            margin: 8px 0;
-        }
+    .title{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+    }
 
-        .quiz-info strong {
-            color: #667eea;
-            font-size: 1.3em;
-        }
+    .logo{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #6366f1, #22c55e);
+      box-shadow: 0 10px 20px rgba(0,0,0,.25);
+      display:grid;
+      place-items:center;
+      color:white;
+      font-weight: 900;
+      letter-spacing: .5px;
+      user-select:none;
+    }
 
-        .question-block {
-            margin-bottom: 40px;
-            padding: 35px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            border-left: 6px solid #667eea;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
+    h1{
+      font-size: 1.25rem;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
 
-        .question-header {
-            margin-bottom: 25px;
-        }
+    .subtitle{
+      color: rgba(229,231,235,.85);
+      font-size: .95rem;
+    }
 
-        .question-number {
-            background: #667eea;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 50%;
-            font-weight: bold;
-            font-size: 1.2em;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
+    .actions{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
 
-        .question-type {
-            background: #764ba2;
-            color: white;
-            padding: 8px 18px;
-            border-radius: 25px;
-            font-size: 0.9em;
-            font-weight: 600;
-            display: inline-block;
-            margin-left: 15px;
-        }
+    .btn{
+      border: 0;
+      cursor:pointer;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-weight: 700;
+      font-size: .98rem;
+      transition: transform .08s ease, filter .2s ease, opacity .2s ease;
+      user-select:none;
+    }
 
-        .question-text {
-            font-size: 1.2em;
-            color: #222;
-            font-weight: 600;
-            line-height: 1.8;
-            margin-top: 15px;
-            display: block;
-        }
+    .btn:active{ transform: translateY(1px); }
 
-        .options {
-            margin-top: 25px;
-        }
+    .btn-primary{
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      box-shadow: 0 10px 20px rgba(99,102,241,.35);
+    }
 
-        .option-item {
-            margin-bottom: 15px;
-            padding: 18px 20px;
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: block;
-        }
+    .btn-ghost{
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.92);
+    }
 
-        .option-item:hover {
-            background: #e8eaf6;
-            border-color: #667eea;
-            transform: translateX(10px);
-        }
+    .btn:disabled{ opacity:.6; cursor:not-allowed; }
 
-        .option-item input[type="radio"] {
-            margin-right: 15px;
-            cursor: pointer;
-            width: 20px;
-            height: 20px;
-            vertical-align: middle;
-        }
+    .grid{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
 
-        .option-item span {
-            cursor: pointer;
-            font-size: 1.05em;
-            color: #333;
-            line-height: 1.6;
-            vertical-align: middle;
-        }
+    .card{
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
 
-        textarea {
-            width: 100%;
-            min-height: 130px;
-            padding: 18px;
-            border: 2px solid #ddd;
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 1.05em;
-            resize: vertical;
-            margin-top: 20px;
-            line-height: 1.7;
-        }
+    .card-head{
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
 
-        textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
-        }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      color: rgba(255,255,255,.92);
+      font-size: .9rem;
+      font-weight: 700;
+      user-select:none;
+    }
 
-        .long-answer textarea {
-            min-height: 200px;
-        }
+    .badge .dot{ width: 10px; height: 10px; border-radius: 999px; background: #a5b4fc; }
 
-        .submit-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 20px 60px;
-            font-size: 1.4em;
-            font-weight: 700;
-            border-radius: 40px;
-            cursor: pointer;
-            display: block;
-            margin: 50px auto;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
-            transition: all 0.3s ease;
-        }
+    .progress{
+      color: rgba(229,231,235,.9);
+      font-weight: 700;
+      font-size: .95rem;
+    }
 
-        .submit-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.7);
-        }
+    .paper{
+      background: var(--paper);
+      color: var(--text);
+      border-radius: calc(var(--radius) - 2px);
+      margin: 14px;
+      padding: 16px;
+      box-shadow: 0 12px 30px rgba(2,6,23,.15);
+    }
 
-        .submit-btn:active {
-            transform: translateY(-2px);
-        }
+    .q{
+      padding: 14px 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      background: #fafafa;
+      margin-bottom: 12px;
+    }
 
-        .results {
-            display: none;
-        }
+    .q-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap:wrap;
+      margin-bottom: 8px;
+    }
 
-        .results.show {
-            display: block;
-        }
+    .qnum{
+      display:inline-grid;
+      place-items:center;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: #eef2ff;
+      color: #3730a3;
+      font-weight: 900;
+    }
 
-        .score-display {
-            text-align: center;
-            font-size: 2.3em;
-            color: #667eea;
-            margin-bottom: 30px;
-            padding: 35px;
-            background: white;
-            border-radius: 20px;
-            font-weight: 700;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-        }
+    .qtype{
+      font-size: .85rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #ecfeff;
+      color: #155e75;
+      border: 1px solid #cffafe;
+      font-weight: 800;
+    }
 
-        .score-display div {
-            margin: 10px 0;
-        }
+    .qtext{
+      font-size: 1.06rem;
+      line-height: 1.65;
+      font-weight: 750;
+      color: #111827;
+      margin-bottom: 10px;
+    }
 
-        .explanation {
-            margin-top: 20px;
-            padding: 20px;
-            background: #e8f5e9;
-            border-left: 6px solid #4caf50;
-            border-radius: 10px;
-            line-height: 1.8;
-        }
+    .opts{
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-        .explanation-title {
-            font-weight: bold;
-            color: #2e7d32;
-            margin-bottom: 12px;
-            font-size: 1.1em;
-        }
+    .opt{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background: white;
+      cursor:pointer;
+      transition: border-color .2s ease, box-shadow .2s ease, transform .08s ease;
+    }
 
-        .correct-answer {
-            color: #4caf50;
-            font-weight: bold;
-            font-size: 1.15em;
-        }
+    .opt:hover{
+      border-color: #c7d2fe;
+      box-shadow: 0 8px 18px rgba(99,102,241,.10);
+      transform: translateY(-1px);
+    }
 
-        .incorrect-answer {
-            color: #f44336;
-            font-weight: bold;
-            font-size: 1.15em;
-        }
+    .opt input{ margin-top: 2px; width: 18px; height: 18px; cursor:pointer; }
+    .opt span{ line-height: 1.55; color:#111827; }
 
-        .user-answer {
-            margin-top: 15px;
-            padding: 18px;
-            background: white;
-            border-radius: 10px;
-            line-height: 1.7;
-        }
+    textarea{
+      width: 100%;
+      min-height: 120px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      font: inherit;
+      line-height: 1.6;
+      background: white;
+      resize: vertical;
+    }
 
-        h2 {
-            color: #667eea;
-            text-align: center;
-            margin: 40px 0 25px 0;
-            font-size: 2em;
-        }
+    textarea:focus, input:focus{ outline:none; box-shadow: var(--ring); border-color: #a5b4fc; }
 
-        .hidden {
-            display: none !important;
-        }
+    .note{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.55;
+    }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 30px 25px;
-            }
+    .err{
+      display:none;
+      margin-top: 12px;
+      padding: 12px 12px;
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      color: #9f1239;
+      border-radius: 14px;
+      font-weight: 700;
+    }
 
-            h1 {
-                font-size: 2.2em;
-            }
+    .results{
+      display:none;
+    }
 
-            .question-block {
-                padding: 25px 20px;
-            }
+    .results.show{ display:block; }
 
-            .question-text {
-                font-size: 1.1em;
-            }
+    .scorebox{
+      display:grid;
+      gap: 10px;
+      padding: 16px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #eef2ff, #ecfeff);
+      border: 1px solid #dbeafe;
+      color: #0f172a;
+      margin-bottom: 14px;
+    }
 
-            .option-item {
-                padding: 15px;
-            }
+    .scoreline{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
 
-            .submit-btn {
-                width: 100%;
-                padding: 18px 40px;
-            }
-        }
+    .big{
+      font-size: 2rem;
+      font-weight: 950;
+      letter-spacing: -.02em;
+    }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 25px 18px;
-            }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(15,23,42,.06);
+      border: 1px solid rgba(15,23,42,.12);
+      font-weight: 900;
+    }
 
-            h1 {
-                font-size: 1.8em;
-            }
+    .review-item{
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 14px;
+      background: white;
+      margin-bottom: 12px;
+    }
 
-            .question-number {
-                padding: 10px 16px;
-                font-size: 1em;
-            }
+    .status{
+      display:inline-block;
+      font-weight: 950;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: .85rem;
+      margin-left: 8px;
+    }
 
-            .question-type {
-                display: block;
-                margin-left: 0;
-                margin-top: 10px;
-                text-align: center;
-            }
-        }
-    </style>
+    .ok{ background:#dcfce7; color:#166534; border:1px solid #bbf7d0; }
+    .bad{ background:#fee2e2; color:#991b1b; border:1px solid #fecaca; }
+
+    .small{
+      color: #475569;
+      font-size: .95rem;
+      line-height: 1.55;
+      margin-top: 8px;
+    }
+
+    .footer-note{ color: rgba(229,231,235,.9); margin-top: 12px; font-size:.95rem; }
+
+    @media (max-width: 520px){
+      .container{ padding: 28px; }
+      .paper{ margin: 12px; }
+      h1{ font-size: 1.1rem; }
+      .big{ font-size: 1.7rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📚 LBA Comprehensive Quiz</h1>
-        <div class="quiz-info">
-            <p><strong>Total Questions: 27</strong></p>
-            <p>15 Multiple Choice • 5 True/False • 4 Short Answer • 3 Long Answer</p>
-            <p>Good luck! 🍀</p>
+  <div class="wrap">
+    <div class="top">
+      <div class="title">
+        <div class="logo">LBA</div>
+        <div>
+          <h1>LBA Comprehensive Quiz</h1>
+          <div class="subtitle">New design • Stable submit • Clean vertical options</div>
         </div>
-
-        <form id="quizForm">
-            <!-- Question 1 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">1</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">What is the definition of a business?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q1" value="A">
-                        <span>A) A government organization that provides services</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q1" value="B">
-                        <span>B) An organization that produces or distributes a good or service for profit</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q1" value="C">
-                        <span>C) A non-profit organization helping the community</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q1" value="D">
-                        <span>D) A group of people working together without financial goals</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 2 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">2</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">Which of the following is NOT one of the three major activities every business engages in?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q2" value="A">
-                        <span>A) Production</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q2" value="B">
-                        <span>B) Marketing</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q2" value="C">
-                        <span>C) Finance</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q2" value="D">
-                        <span>D) Administration</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 3 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">3</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">Which industry type manufactures raw materials into finished products?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q3" value="A">
-                        <span>A) Primary Industry</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q3" value="B">
-                        <span>B) Secondary Industry</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q3" value="C">
-                        <span>C) Tertiary Industry</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q3" value="D">
-                        <span>D) Quaternary Industry</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 4 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">4</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">What does GDP stand for?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q4" value="A">
-                        <span>A) General Distribution Product</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q4" value="B">
-                        <span>B) Gross Domestic Product</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q4" value="C">
-                        <span>C) Global Development Plan</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q4" value="D">
-                        <span>D) Government Distribution Policy</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 5 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">5</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">In the GDP formula GDP = C + I + G + (X - M), what does 'C' represent?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q5" value="A">
-                        <span>A) Capital</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q5" value="B">
-                        <span>B) Consumption</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q5" value="C">
-                        <span>C) Commerce</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q5" value="D">
-                        <span>D) Currency</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 6 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">6</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">What is the difference between effectiveness and efficiency?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q6" value="A">
-                        <span>A) Effectiveness is doing things right; efficiency is doing the right things</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q6" value="B">
-                        <span>B) Effectiveness is making the right decisions; efficiency is producing quickly at low cost</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q6" value="C">
-                        <span>C) They are the same concept</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q6" value="D">
-                        <span>D) Effectiveness is about profit; efficiency is about customer satisfaction</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 7 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">7</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">According to business size classification in KSA, how many employees does a small business have?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q7" value="A">
-                        <span>A) From 1 to 5</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q7" value="B">
-                        <span>B) From 6 to 49</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q7" value="C">
-                        <span>C) From 50 to 249</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q7" value="D">
-                        <span>D) 250 or more</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 8 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">8</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">What is a franchise?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q8" value="A">
-                        <span>A) A type of stock market investment</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q8" value="B">
-                        <span>B) A legal agreement to sell a company's product or service under its name and trademark</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q8" value="C">
-                        <span>C) A government permit to operate a business</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q8" value="D">
-                        <span>D) A business loan program</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 9 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">9</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">Who is the franchisor in a franchise agreement?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q9" value="A">
-                        <span>A) The distributor of the franchised product or service</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q9" value="B">
-                        <span>B) The parent company that provides the product or service</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q9" value="C">
-                        <span>C) The customer who purchases the product</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q9" value="D">
-                        <span>D) The government regulatory agency</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 10 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">10</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">Which is NOT a benefit of a globalized supply chain?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q10" value="A">
-                        <span>A) Reach new customers in new markets</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q10" value="B">
-                        <span>B) Expand sourcing opportunities</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q10" value="C">
-                        <span>C) Greater complexity</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q10" value="D">
-                        <span>D) Save money and increase profits</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 11 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">11</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">What does "globalization" refer to in supply chain management?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q11" value="A">
-                        <span>A) Only exporting products to other countries</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q11" value="B">
-                        <span>B) The process in which a business operates on an international scale</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q11" value="C">
-                        <span>C) Importing raw materials only</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q11" value="D">
-                        <span>D) Focusing solely on domestic markets</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 12 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">12</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">Which of the following is considered an industrial business?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q12" value="A">
-                        <span>A) Retail stores</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q12" value="B">
-                        <span>B) Companies that manufacture airplanes</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q12" value="C">
-                        <span>C) Medical offices</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q12" value="D">
-                        <span>D) Fitness centers</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 13 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">13</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">Which type of franchise is most common?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q13" value="A">
-                        <span>A) Product Distribution Franchises</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q13" value="B">
-                        <span>B) Business Format Franchises</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q13" value="C">
-                        <span>C) Investment Franchises</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q13" value="D">
-                        <span>D) Service Franchises</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 14 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">14</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">What are the three ways efficiency can be achieved?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q14" value="A">
-                        <span>A) Marketing, sales, and distribution</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q14" value="B">
-                        <span>B) Specialization of effort, better technology, and innovation</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q14" value="C">
-                        <span>C) Hiring, training, and firing</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q14" value="D">
-                        <span>D) Planning, organizing, and controlling</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 15 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">15</span>
-                    <span class="question-type">Multiple Choice</span>
-                    <div class="question-text">Which of the following is NOT listed as a stakeholder?</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q15" value="A">
-                        <span>A) Customers</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q15" value="B">
-                        <span>B) Suppliers</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q15" value="C">
-                        <span>C) Competitors</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q15" value="D">
-                        <span>D) Local Community</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- TRUE/FALSE QUESTIONS -->
-            <!-- Question 16 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">16</span>
-                    <span class="question-type">True/False</span>
-                    <div class="question-text">Tertiary industries provide services to consumers and other businesses.</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q16" value="T">
-                        <span>True</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q16" value="F">
-                        <span>False</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 17 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">17</span>
-                    <span class="question-type">True/False</span>
-                    <div class="question-text">The underground economy is included in GDP calculations.</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q17" value="T">
-                        <span>True</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q17" value="F">
-                        <span>False</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 18 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">18</span>
-                    <span class="question-type">True/False</span>
-                    <div class="question-text">A franchisee has complete control over all business decisions and operations.</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q18" value="T">
-                        <span>True</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q18" value="F">
-                        <span>False</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 19 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">19</span>
-                    <span class="question-type">True/False</span>
-                    <div class="question-text">Commercial businesses are engaged in marketing, finance, and providing services.</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q19" value="T">
-                        <span>True</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q19" value="F">
-                        <span>False</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Question 20 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">20</span>
-                    <span class="question-type">True/False</span>
-                    <div class="question-text">Good managers focus on either effectiveness or efficiency, but not both.</div>
-                </div>
-                <div class="options">
-                    <label class="option-item">
-                        <input type="radio" name="q20" value="T">
-                        <span>True</span>
-                    </label>
-                    <label class="option-item">
-                        <input type="radio" name="q20" value="F">
-                        <span>False</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- SHORT ANSWER QUESTIONS -->
-            <!-- Question 21 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">21</span>
-                    <span class="question-type">Short Answer</span>
-                    <div class="question-text">List and briefly explain the three major activities every business engages in.</div>
-                </div>
-                <textarea name="q21" placeholder="Write your answer here..."></textarea>
-            </div>
-
-            <!-- Question 22 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">22</span>
-                    <span class="question-type">Short Answer</span>
-                    <div class="question-text">Name three advantages of operating a franchise business.</div>
-                </div>
-                <textarea name="q22" placeholder="Write your answer here..."></textarea>
-            </div>
-
-            <!-- Question 23 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">23</span>
-                    <span class="question-type">Short Answer</span>
-                    <div class="question-text">Explain what stakeholders are and provide three examples.</div>
-                </div>
-                <textarea name="q23" placeholder="Write your answer here..."></textarea>
-            </div>
-
-            <!-- Question 24 -->
-            <div class="question-block">
-                <div class="question-header">
-                    <span class="question-number">24</span>
-                    <span class="question-type">Short Answer</span>
-                    <div class="question-text">What are the five components of the GDP formula and what does each represent?</div>
-                </div>
-                <textarea name="q24" placeholder="Write your answer here..."></textarea>
-            </div>
-
-            <!-- LONG ANSWER QUESTIONS -->
-            <!-- Question 25 -->
-            <div class="question-block long-answer">
-                <div class="question-header">
-                    <span class="question-number">25</span>
-                    <span class="question-type">Long Answer</span>
-                    <div class="question-text">Discuss the benefits and negatives of a globalized supply chain. Provide at least three points for each.</div>
-                </div>
-                <textarea name="q25" placeholder="Write your detailed answer here..."></textarea>
-            </div>
-
-            <!-- Question 26 -->
-            <div class="question-block long-answer">
-                <div class="question-header">
-                    <span class="question-number">26</span>
-                    <span class="question-type">Long Answer</span>
-                    <div class="question-text">Compare and contrast effectiveness and efficiency in business operations. Why is it important for managers to focus on both? Provide examples.</div>
-                </div>
-                <textarea name="q26" placeholder="Write your detailed answer here..."></textarea>
-            </div>
-
-            <!-- Question 27 -->
-            <div class="question-block long-answer">
-                <div class="question-header">
-                    <span class="question-number">27</span>
-                    <span class="question-type">Long Answer</span>
-                    <div class="question-text">Explain the difference between industrial and commercial businesses. Provide specific examples of each type and describe how they contribute to the economy.</div>
-                </div>
-                <textarea name="q27" placeholder="Write your detailed answer here..."></textarea>
-            </div>
-
-            <button type="submit" class="submit-btn">Submit Quiz 📝</button>
-        </form>
-
-        <div id="results" class="results"></div>
+      </div>
+      <div class="actions">
+        <button id="btnGrade" class="btn btn-primary" type="button">Check answers</button>
+        <button id="btnReset" class="btn btn-ghost" type="button">Reset</button>
+      </div>
     </div>
 
-    <script>
-        // Answer key
-        const correctAnswers = {
-            q1: 'B', q2: 'D', q3: 'B', q4: 'B', q5: 'B',
-            q6: 'B', q7: 'B', q8: 'B', q9: 'B', q10: 'C',
-            q11: 'B', q12: 'B', q13: 'B', q14: 'B', q15: 'C',
-            q16: 'T', q17: 'F', q18: 'F', q19: 'T', q20: 'F'
-        };
+    <div class="grid">
+      <div class="card">
+        <div class="card-head">
+          <div class="badge"><span class="dot"></span>Quiz status</div>
+          <div class="progress" id="progressText">Loading…</div>
+        </div>
+        <div class="paper">
+          <div id="errorBox" class="err"></div>
+          <div id="quiz"></div>
+          <p class="note">Note: Short/Long answers are shown with guidelines and need manual grading.</p>
+        </div>
+      </div>
 
-        // Explanations
-        const explanations = {
-            q1: 'A business is defined as an organization that produces or distributes a good or service for profit. This distinguishes it from non-profit organizations and government entities.',
-            q2: 'The three major activities are Production, Marketing, and Finance. Administration, while important, is not listed as one of the three major activities.',
-            q3: 'Secondary Industry manufactures raw materials into finished products. Examples include refining gold into jewelry or milling wheat into flour.',
-            q4: 'GDP stands for Gross Domestic Product, which is the main measure of a nation\'s economic wealth.',
-            q5: 'In the GDP formula, C represents Consumption - the personal household expenditure of people including food, rent, and medical expenses.',
-            q6: 'Effectiveness means making the right decisions about what products/services to offer and how to deliver them. Efficiency means producing quickly at low cost without wasting resources.',
-            q7: 'According to KSA business classification, a small business has 6 to 49 employees and revenues from 3 to 40 million SAR.',
-            q8: 'A franchise is a legal agreement in which an individual purchases the right to sell a company\'s product or service under the company\'s name and trademark.',
-            q9: 'The franchisor is the parent company that provides the product or service. The franchisee is the distributor who purchases the franchise rights.',
-            q10: 'Greater complexity is a negative of globalized supply chains, not a benefit. Benefits include reaching new markets, expanding sourcing, and increasing profits.',
-            q11: 'Globalization in supply chain management refers to the process in which a business operates on an international scale, involving the free movement of goods, services, and people.',
-            q12: 'Industrial businesses produce goods used by other businesses. Companies that manufacture airplanes are industrial businesses.',
-            q13: 'Business Format Franchises are the most common type, providing a comprehensive business model including brand identity, operational processes, training, and support.',
-            q14: 'The three ways to achieve efficiency are: Specialization of effort, Better technology, and Innovation.',
-            q15: 'Competitors are not listed as stakeholders. Stakeholders include customers, managers, employees, owners, suppliers, government, creditors, and local community.',
-            q16: 'True. Tertiary industries provide services to consumers and other businesses, often involving selling or using products from secondary industries.',
-            q17: 'False. The underground economy (unreported income, illegal transactions) is NOT included in GDP calculations because these transactions are not recorded.',
-            q18: 'False. A franchisee does not have complete control. They must follow the franchisor\'s rules strictly regarding branding, pricing, and operations, which is a disadvantage of franchising.',
-            q19: 'True. Commercial businesses are engaged in marketing (wholesalers/retailers), finance (banks/investment companies), and providing services (medical offices, hotels).',
-            q20: 'False. Good managers focus on BOTH effectiveness AND efficiency and are able to achieve both. Focusing on only one leads to business problems.'
-        };
+      <div class="card results" id="resultsCard">
+        <div class="card-head">
+          <div class="badge"><span class="dot" style="background:#22c55e"></span>Results</div>
+          <div class="progress" id="resultsMeta">—</div>
+        </div>
+        <div class="paper" id="results"></div>
+      </div>
+    </div>
 
-        // Short answer guidelines
-        const shortGuidelines = {
-            q21: '<strong>Key Points:</strong><br><br>1. <strong>Production:</strong> Making products or providing services<br>2. <strong>Marketing:</strong> Buying and selling goods/services to customers<br>3. <strong>Finance:</strong> Managing all money matters in the business',
-            q22: '<strong>Advantages:</strong><br><br>1. Location assistance with exclusive territory<br>2. Training and ongoing support<br>3. Higher success rate than independent startups',
-            q23: '<strong>Definition:</strong> Anyone with interest in business success<br><br><strong>Examples:</strong> Customers, Employees, Suppliers (any 3)',
-            q24: '<strong>Components:</strong><br><br>C = Consumption<br>I = Investment<br>G = Government Spending<br>X = Exports<br>M = Imports'
-        };
+    <div class="footer-note">If the button still does nothing, tell me which browser/device you are using and I will adapt it.</div>
+  </div>
 
-        // Long answer guidelines
-        const longGuidelines = {
-            q25: '<strong>Benefits:</strong> New markets, sourcing opportunities, cost savings<br><br><strong>Negatives:</strong> Complexity, supply risks, legal issues',
-            q26: '<strong>Effectiveness:</strong> Right decisions<br><strong>Efficiency:</strong> Low cost production<br><strong>Importance:</strong> Both needed for success',
-            q27: '<strong>Industrial:</strong> Produce goods (airplanes, buildings)<br><strong>Commercial:</strong> Services & distribution (banks, retailers)'
-        };
+  <script>
+  (function(){
+    'use strict';
 
-        // Form submission
-        document.getElementById('quizForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+    const quizEl = document.getElementById('quiz');
+    const resultsCard = document.getElementById('resultsCard');
+    const resultsEl = document.getElementById('results');
+    const progressText = document.getElementById('progressText');
+    const resultsMeta = document.getElementById('resultsMeta');
+    const errorBox = document.getElementById('errorBox');
 
-            // Calculate score
-            let score = 0;
-            const total = 20;
+    function showError(msg){
+      errorBox.style.display = 'block';
+      errorBox.textContent = msg;
+    }
+    function clearError(){
+      errorBox.style.display = 'none';
+      errorBox.textContent = '';
+    }
 
-            for (let i = 1; i <= 20; i++) {
-                const selected = document.querySelector('input[name="q' + i + '"]:checked');
-                if (selected && selected.value === correctAnswers['q' + i]) {
-                    score++;
-                }
-            }
+    // Questions derived from the attached slides (MCQ + T/F + short/long).
+    // Objective questions are graded automatically.
+    const questions = [
+      {id:'q1', type:'MCQ', text:'What is the definition of a business?',
+        options:[
+          ['A','A government organization that provides services'],
+          ['B','An organization that produces or distributes a good or a service for profit'],
+          ['C','A non-profit organization helping the community'],
+          ['D','A group of people working together without financial goals'],
+        ],
+        answer:'B',
+        explanation:'A business produces or distributes goods/services for profit (profit = income − costs).'
+      },
+      {id:'q2', type:'MCQ', text:'Which of the following is NOT one of the three major activities every business engages in?',
+        options:[['A','Production'],['B','Marketing'],['C','Finance'],['D','Administration']],
+        answer:'D',
+        explanation:'The three major activities are Production, Marketing, and Finance.'
+      },
+      {id:'q3', type:'MCQ', text:'Which industry type manufactures raw materials into finished products?',
+        options:[['A','Primary industry'],['B','Secondary industry'],['C','Tertiary industry'],['D','Quaternary industry']],
+        answer:'B',
+        explanation:'Secondary industry turns raw materials into finished products (e.g., refining crude oil, milling wheat).'
+      },
+      {id:'q4', type:'MCQ', text:'What does GDP stand for?',
+        options:[['A','General Distribution Product'],['B','Gross Domestic Product'],['C','Global Development Plan'],['D','Government Distribution Policy']],
+        answer:'B',
+        explanation:'GDP stands for Gross Domestic Product.'
+      },
+      {id:'q5', type:'MCQ', text:"In the GDP formula GDP = C + I + G + (X − M), what does 'C' represent?",
+        options:[['A','Capital'],['B','Consumption'],['C','Commerce'],['D','Currency']],
+        answer:'B',
+        explanation:'C is Consumption (household spending such as food, rent, medical, etc.).'
+      },
+      {id:'q6', type:'MCQ', text:'What is the best description of effectiveness vs efficiency?',
+        options:[
+          ['A','Effectiveness is doing things right; efficiency is doing the right things'],
+          ['B','Effectiveness is making the right decisions; efficiency is producing quickly at low cost without wasting resources'],
+          ['C','They are the same concept'],
+          ['D','Effectiveness is about profit; efficiency is about customer satisfaction'],
+        ],
+        answer:'B',
+        explanation:'Effectiveness = right decisions (what to offer and how); efficiency = fast/low-cost production without waste.'
+      },
+      {id:'q7', type:'MCQ', text:'According to business size classification in KSA, how many employees does a small business have?',
+        options:[['A','From 1 to 5'],['B','From 6 to 49'],['C','From 50 to 249'],['D','250 or more']],
+        answer:'B',
+        explanation:'KSA classification: Small business has 6–49 employees (and revenue 3–40 million SAR).'
+      },
+      {id:'q8', type:'MCQ', text:'What is a franchise?',
+        options:[
+          ['A','A type of stock market investment'],
+          ['B','A legal agreement to sell a company\'s product or service under its name and trademark'],
+          ['C','A government permit to operate a business'],
+          ['D','A business loan program'],
+        ],
+        answer:'B',
+        explanation:'A franchise is a legal agreement giving the right to sell under the company\'s name and trademark.'
+      },
+      {id:'q9', type:'MCQ', text:'Who is the franchisor in a franchise agreement?',
+        options:[
+          ['A','The distributor of the franchised product or service'],
+          ['B','The parent company that provides the product or service'],
+          ['C','The customer who purchases the product'],
+          ['D','The government regulatory agency'],
+        ],
+        answer:'B',
+        explanation:'The franchisor is the parent company; the franchisee is the distributor.'
+      },
+      {id:'q10', type:'MCQ', text:'Which is NOT a benefit of a globalized supply chain?',
+        options:[['A','Reach new customers in new markets'],['B','Expand sourcing opportunities'],['C','Greater complexity'],['D','Save money and increase profits']],
+        answer:'C',
+        explanation:'Greater complexity is listed as a negative, not a benefit.'
+      },
+      {id:'q11', type:'MCQ', text:'In supply chain management, globalization refers to…',
+        options:[['A','Only exporting products to other countries'],['B','The process in which a business operates on an international scale'],['C','Importing raw materials only'],['D','Focusing solely on domestic markets']],
+        answer:'B',
+        explanation:'Globalization (SCM) = operating internationally; free movement of goods/services/people.'
+      },
+      {id:'q12', type:'MCQ', text:'Which of the following is considered an industrial business?',
+        options:[['A','Retail stores'],['B','Companies that manufacture airplanes'],['C','Medical offices'],['D','Fitness centers']],
+        answer:'B',
+        explanation:'Industrial businesses produce goods used by other businesses/organizations (e.g., airplanes).'
+      },
+      {id:'q13', type:'MCQ', text:'Which type of franchise is most common?',
+        options:[['A','Product distribution franchises'],['B','Business format franchises'],['C','Investment franchises'],['D','Service franchises']],
+        answer:'B',
+        explanation:'Business format franchise is listed as the most common type.'
+      },
+      {id:'q14', type:'MCQ', text:'Efficiency can be achieved in three ways. Which option matches them?',
+        options:[
+          ['A','Marketing, sales, and distribution'],
+          ['B','Specialization of effort, better technology, and innovation'],
+          ['C','Hiring, training, and firing'],
+          ['D','Planning, organizing, and controlling'],
+        ],
+        answer:'B',
+        explanation:'The slides list: specialization of effort, better technology, innovation.'
+      },
+      {id:'q15', type:'MCQ', text:'Which of the following is NOT listed as a stakeholder?',
+        options:[['A','Customers'],['B','Suppliers'],['C','Competitors'],['D','Local community']],
+        answer:'C',
+        explanation:'Stakeholders listed include customers, managers, employees, owners, suppliers, government, creditors, local community/environment.'
+      },
+      {id:'q16', type:'TF', text:'Tertiary industries provide services to consumers and other businesses.',
+        options:[['T','True'],['F','False']], answer:'T',
+        explanation:'Tertiary industry provides services to consumers and other businesses.'
+      },
+      {id:'q17', type:'TF', text:'The underground economy is included in GDP calculations.',
+        options:[['T','True'],['F','False']], answer:'F',
+        explanation:'Unreported/illegal transactions are not recorded, so they are excluded from GDP.'
+      },
+      {id:'q18', type:'TF', text:'A franchisee has complete control over all business decisions and operations.',
+        options:[['T','True'],['F','False']], answer:'F',
+        explanation:'Franchisees must follow franchisor rules (branding/pricing/operations), so control is limited.'
+      },
+      {id:'q19', type:'TF', text:'Commercial businesses are engaged in marketing, finance, and providing services.',
+        options:[['T','True'],['F','False']], answer:'T',
+        explanation:'Slides list commercial businesses: marketing (wholesalers/retailers), finance (banks), services (medical offices, hotels, etc.).'
+      },
+      {id:'q20', type:'TF', text:'Good managers focus on either effectiveness or efficiency, but not both.',
+        options:[['T','True'],['F','False']], answer:'F',
+        explanation:'Slides: good managers focus on both effectiveness and efficiency.'
+      },
 
-            const percentage = ((score / total) * 100).toFixed(1);
-            let emoji = '💪';
-            if (percentage >= 90) emoji = '🌟';
-            else if (percentage >= 80) emoji = '🎉';
-            else if (percentage >= 70) emoji = '👍';
-            else if (percentage >= 60) emoji = '📚';
+      {id:'q21', type:'Short', text:'List and briefly explain the three major activities every business engages in.',
+        guideline:'Production (making a product/providing a service), Marketing (activities between business and customers in buying/selling), Finance (all money matters in running a business).'
+      },
+      {id:'q22', type:'Short', text:'Name three advantages of operating a franchise business.',
+        guideline:'Examples: location assistance and exclusive territory, training & support, higher chance of success vs starting alone.'
+      },
+      {id:'q23', type:'Short', text:'Explain what stakeholders are and provide three examples.',
+        guideline:'Stakeholders are anyone who has an interest in the success of a business; examples include customers, employees, suppliers, owners, government, creditors, local community.'
+      },
+      {id:'q24', type:'Short', text:'What are the five components of the GDP formula and what does each represent?',
+        guideline:'GDP = C + I + G + (X − M), where C=Consumption, I=Investment, G=Government Spending, X=Exports, M=Imports (subtracted).'
+      },
 
-            // Build results HTML
-            let html = '<h2>📊 Quiz Results</h2>';
-            html += '<div class="score-display">';
-            html += '<div style="font-size:3em;">' + emoji + '</div>';
-            html += '<div style="font-size:0.7em;color:#555;">Score</div>';
-            html += '<div>' + score + ' / ' + total + '</div>';
-            html += '<div style="font-size:0.9em;">' + percentage + '%</div>';
-            html += '</div>';
+      {id:'q25', type:'Long', text:'Discuss the benefits and negatives of a globalized supply chain (at least three points for each).',
+        guideline:'Benefits: new markets, sourcing opportunities, larger selection, growth, cost savings; Negatives: complexity, supply chain risk, increased competition, data challenges, legal issues.'
+      },
+      {id:'q26', type:'Long', text:'Compare effectiveness and efficiency. Why must managers focus on both? Provide examples.',
+        guideline:'Effectiveness = right decisions (what to offer/how to deliver); Efficiency = low-cost, fast production with minimal waste; managers need both to avoid “doing the wrong things well” or “doing the right things poorly.”'
+      },
+      {id:'q27', type:'Long', text:'Explain the difference between industrial and commercial businesses with examples and economic contribution.',
+        guideline:'Industrial produces goods used by other businesses (mining, oil/gas, airplanes, buildings); Commercial includes marketing, finance, services (wholesalers/retailers, banks, hotels, medical offices).'
+      },
+    ];
 
-            html += '<h2>📋 Review</h2>';
+    function escapeHtml(s){
+      return String(s)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
+    }
 
-            // Objective questions
-            for (let i = 1; i <= 20; i++) {
-                const selected = document.querySelector('input[name="q' + i + '"]:checked');
-                const correct = correctAnswers['q' + i];
-                const isCorrect = selected && selected.value === correct;
-                const qText = document.querySelectorAll('.question-text')[i-1].textContent;
+    function render(){
+      const objCount = questions.filter(q => q.type==='MCQ' || q.type==='TF').length;
+      const shortCount = questions.filter(q => q.type==='Short').length;
+      const longCount = questions.filter(q => q.type==='Long').length;
+      progressText.textContent = `Total: ${questions.length} • Auto-graded: ${objCount} • Short: ${shortCount} • Long: ${longCount}`;
 
-                html += '<div class="question-block">';
-                html += '<div class="question-header">';
-                html += '<span class="question-number">' + i + '</span>';
-                html += '<span class="' + (isCorrect ? 'correct-answer' : 'incorrect-answer') + '">';
-                html += isCorrect ? '✓ Correct' : '✗ Incorrect';
-                html += '</span>';
-                html += '<div class="question-text">' + qText + '</div>';
-                html += '</div>';
-                html += '<div style="margin:18px 0;padding:15px;background:white;border-radius:10px;">';
-                html += '<strong>Correct:</strong> <span style="color:#4caf50;font-weight:bold;">' + correct + '</span><br>';
-                html += '<strong>Your answer:</strong> ';
-                if (selected) {
-                    html += '<span style="color:' + (isCorrect ? '#4caf50' : '#f44336') + ';font-weight:bold;">' + selected.value + '</span>';
-                } else {
-                    html += '<span style="color:#999;">Not answered</span>';
-                }
-                html += '</div>';
-                html += '<div class="explanation">';
-                html += '<div class="explanation-title">💡 Explanation:</div>';
-                html += explanations['q' + i];
-                html += '</div>';
-                html += '</div>';
-            }
+      let html = '';
+      questions.forEach((q, idx) => {
+        const num = idx + 1;
+        html += `<div class="q" id="block-${q.id}">`;
+        html += `<div class="q-top"><div class="qnum">${num}</div><div class="qtype">${q.type}</div></div>`;
+        html += `<div class="qtext">${escapeHtml(q.text)}</div>`;
 
-            // Short answers
-            html += '<h2>📝 Short Answers</h2>';
-            for (let i = 21; i <= 24; i++) {
-                const answer = document.querySelector('textarea[name="q' + i + '"]').value;
-                const qText = document.querySelectorAll('.question-text')[i-1].textContent;
+        if (q.type==='MCQ' || q.type==='TF'){
+          html += `<div class="opts" role="radiogroup" aria-label="${escapeHtml(q.text)}">`;
+          q.options.forEach(([val,label]) => {
+            const rid = `${q.id}_${val}`;
+            html += `
+              <label class="opt" for="${rid}">
+                <input id="${rid}" type="radio" name="${q.id}" value="${val}" />
+                <span><strong>${escapeHtml(val)})</strong> ${escapeHtml(label)}</span>
+              </label>`;
+          });
+          html += `</div>`;
+        } else {
+          const rows = q.type==='Long' ? 7 : 5;
+          html += `<textarea name="${q.id}" rows="${rows}" placeholder="Write your answer here..."></textarea>`;
+          html += `<p class="note"><strong>Guideline:</strong> ${escapeHtml(q.guideline)}</p>`;
+        }
 
-                html += '<div class="question-block">';
-                html += '<div class="question-header">';
-                html += '<span class="question-number">' + i + '</span>';
-                html += '<div class="question-text">' + qText + '</div>';
-                html += '</div>';
-                if (answer) {
-                    html += '<div class="user-answer"><strong>Your Answer:</strong><br>' + answer.replace(/
-/g, '<br>') + '</div>';
-                } else {
-                    html += '<div class="user-answer" style="color:#999;font-style:italic;">No answer</div>';
-                }
-                html += '<div class="explanation">';
-                html += '<div class="explanation-title">💡 Guidelines:</div>';
-                html += shortGuidelines['q' + i];
-                html += '</div>';
-                html += '</div>';
-            }
+        html += `</div>`;
+      });
+      quizEl.innerHTML = html;
+    }
 
-            // Long answers
-            html += '<h2>📚 Long Answers</h2>';
-            for (let i = 25; i <= 27; i++) {
-                const answer = document.querySelector('textarea[name="q' + i + '"]').value;
-                const qText = document.querySelectorAll('.question-text')[i-1].textContent;
+    function getSelectedValue(name){
+      const el = document.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : null;
+    }
 
-                html += '<div class="question-block">';
-                html += '<div class="question-header">';
-                html += '<span class="question-number">' + i + '</span>';
-                html += '<div class="question-text">' + qText + '</div>';
-                html += '</div>';
-                if (answer) {
-                    html += '<div class="user-answer"><strong>Your Answer:</strong><br>' + answer.replace(/
-/g, '<br>') + '</div>';
-                } else {
-                    html += '<div class="user-answer" style="color:#999;font-style:italic;">No answer</div>';
-                }
-                html += '<div class="explanation">';
-                html += '<div class="explanation-title">💡 Guidelines:</div>';
-                html += longGuidelines['q' + i];
-                html += '</div>';
-                html += '</div>';
-            }
+    function grade(){
+      clearError();
 
-            // Display results
-            document.getElementById('quizForm').classList.add('hidden');
-            document.getElementById('results').innerHTML = html;
-            document.getElementById('results').classList.add('show');
-            window.scrollTo({top: 0, behavior: 'smooth'});
+      // Grade objective questions
+      const objective = questions.filter(q => q.type==='MCQ' || q.type==='TF');
+      const total = objective.length;
+      let score = 0;
+
+      const review = [];
+      objective.forEach((q) => {
+        const picked = getSelectedValue(q.id);
+        const ok = picked && picked === q.answer;
+        if (ok) score++;
+        review.push({
+          id: q.id,
+          text: q.text,
+          picked: picked,
+          correct: q.answer,
+          ok,
+          explanation: q.explanation
         });
-    </script>
+      });
+
+      const pct = total ? (score / total) * 100 : 0;
+      const pctText = pct.toFixed(1);
+      let emoji = '💪';
+      if (pct >= 90) emoji = '🌟';
+      else if (pct >= 80) emoji = '🎉';
+      else if (pct >= 70) emoji = '👍';
+      else if (pct >= 60) emoji = '📚';
+
+      // Build results
+      let html = '';
+      html += `<div class="scorebox">
+        <div class="scoreline">
+          <div class="big">${emoji} ${score} / ${total}</div>
+          <div class="pill">${pctText}%</div>
+        </div>
+        <div style="color:#334155;font-weight:800;">Auto-graded (MCQ + True/False). Short/Long answers need manual review.</div>
+      </div>`;
+
+      html += `<h3 style="margin:10px 0 12px; color:#0f172a;">Detailed review</h3>`;
+
+      review.forEach((r, idx) => {
+        const status = r.ok ? `<span class="status ok">Correct</span>` : `<span class="status bad">Incorrect</span>`;
+        const your = r.picked ? escapeHtml(r.picked) : '—';
+        html += `<div class="review-item">
+          <div style="font-weight:950; color:#0f172a;">${idx+1}. ${escapeHtml(r.text)} ${status}</div>
+          <div class="small"><strong>Correct:</strong> ${escapeHtml(r.correct)} &nbsp; | &nbsp; <strong>Your answer:</strong> ${your}</div>
+          <div class="small"><strong>Explanation:</strong> ${escapeHtml(r.explanation || '')}</div>
+        </div>`;
+      });
+
+      resultsEl.innerHTML = html;
+      resultsCard.classList.add('show');
+      resultsMeta.textContent = `Score updated • ${new Date().toLocaleString()}`;
+      resultsCard.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function resetAll(){
+      clearError();
+      // Clear radios
+      document.querySelectorAll('input[type="radio"]').forEach(i => i.checked = false);
+      // Clear textareas
+      document.querySelectorAll('textarea').forEach(t => t.value = '');
+      // Hide results
+      resultsCard.classList.remove('show');
+      resultsEl.innerHTML = '';
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    // Wire buttons with extra safety
+    function bind(){
+      const btnGrade = document.getElementById('btnGrade');
+      const btnReset = document.getElementById('btnReset');
+
+      if (!btnGrade || !btnReset) {
+        showError('UI buttons not found. Please re-upload the file (index.html) and refresh.');
+        return;
+      }
+
+      btnGrade.addEventListener('click', function(){
+        try{ grade(); }
+        catch(err){
+          console.error(err);
+          showError('A script error occurred while grading. Tell me your browser/device, and I will patch it.');
+        }
+      });
+
+      btnReset.addEventListener('click', function(){
+        try{ resetAll(); }
+        catch(err){
+          console.error(err);
+          showError('A script error occurred while resetting.');
+        }
+      });
+    }
+
+    // Init
+    try{
+      render();
+      bind();
+      clearError();
+    } catch (err){
+      console.error(err);
+      showError('Failed to initialize the quiz. Please re-upload index.html.');
+    }
+
+  })();
+  </script>
 </body>
 </html>
